@@ -1,0 +1,46 @@
+﻿<ContentPage x:Class="ChatClient.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Streaming Messages">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30,0" VerticalOptions="Center">
+
+            <Label Text="Streaming API Demo" FontSize="32" HorizontalOptions="Center" />
+            
+            <Entry x:Name="MessageEntry"
+                   Placeholder="Enter your message here"
+                   FontSize="18" />
+            
+            <Label Text="Select Streaming Method:" FontAttributes="Bold" />
+            <HorizontalStackLayout x:Name="StreamingMethodGroup">
+                <RadioButton Content="HTTP" GroupName="Streaming" IsChecked="True" />
+                <RadioButton Content="SSE" GroupName="Streaming" />
+                <RadioButton Content="SignalR" GroupName="Streaming" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Button 
+                    x:Name="StartButton"
+                    Text="Ask" 
+                    Clicked="OnStartStreamingClicked"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    WidthRequest="150" />
+            </HorizontalStackLayout>
+
+            <Label Text="Messages:" FontSize="18" FontAttributes="Bold" Margin="0,20,0,10" />
+
+            <Border Stroke="Gray" StrokeThickness="1" BackgroundColor="LightGray" Padding="10" HeightRequest="400">
+                <ListView x:Name="MessagesListView" BackgroundColor="White">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding .}" TextColor="Black" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
